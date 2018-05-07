@@ -9,8 +9,12 @@ import{
     StyleSheet,
     Button,
     SectionList,
+    Image,
+    Dimensions,
 
  } from 'react-native';
+
+const {width, height} = Dimensions.get('window');
 
 export default self  => (
 
@@ -18,7 +22,14 @@ export default self  => (
         <SectionList
           sections={self.state.showData}
           ItemSeparatorComponent = {ItemDivideComponent}
-          renderItem={({item}) => <Text style={styles.item} onPress= {() => {self.navigation.navigate("ProblemsList")}}>{item}</Text>}
+          renderItem={({item}) => 
+          <View style={styles.item}>
+            <Text style={styles.text} onPress= {() => {self.navigation.navigate("ProblemsList")}}>{item}
+            </Text>
+          <Image style={styles.ImageArrow} source={require('../arrow_right.png')} resizeMode='center'/>
+          </View>
+          }
+          // renderItem={ItemByData}
           renderSectionHeader={({section}) => <Text style={styles.sectionHeader}>{section.title}</Text>}
         />
 
@@ -28,28 +39,25 @@ export default self  => (
           <Text style={styles.buttonText}>联系客服</Text>
           </TouchableOpacity>
         </View>
-
-
-      </View>
-
-
-
+    </View>
 
   );
 
+  // class ItemDesBySlef extends Component{
+  //   render(){
+  //     return(
+  //       <View>
+  //         <Text>ddddd </Text>
+  //       </View>
+  //     );
+  //   }
+  // };
+  // function ItemByData(){
+  //     return(
+  //       <Text style={styles.item} onPress= {() => {self.navigation.navigate("ProblemsList")}}>{self.state.showData.title}</Text>
+  //     );
 
-  class ItemDesBySlef extends Component{
-    render(){
-      return(
-        <View>
-          <Text>fsdfsfddf</Text>
-          <Text>fsdfsfddf</Text>
-          <Text>fsdfsfddf</Text>
-          <Text>fsdfsfddf</Text>
-        </View>
-      );
-    }
-  }
+  // }
 
   // 分割线
   class ItemDivideComponent extends Component {
@@ -79,14 +87,26 @@ function contactCustomerService(){
       height:20 ,
       backgroundColor: 'rgba(247,247,247,1.0)',
     },
-    item: {
+    item:{
+      height:49,
+      width:width,
+      flexDirection: 'row',
+    },
+    text: {
       padding: 15,
       fontSize: 15,
       height: 49,
+      width:width - 49,
       color:'#333333',
       backgroundColor: 'rgba(255,255,255,1.0)',
     },
-
+    ImageArrow:{
+      height:49,
+      width:49,
+      marginRight:49,
+      backgroundColor: 'rgba(255,255,255,1.0)',
+      paddingRight:70,
+    },
     bottomView:{
       height:108,
       paddingLeft: 0,

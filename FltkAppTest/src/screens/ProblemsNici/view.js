@@ -12,13 +12,11 @@ import{
 
  } from 'react-native';
 
-export default self => (
+export default self  => (
+
     <View style={styles.container}>
         <SectionList
-          sections={[
-            {title: '常见问题', data: ['如何查看维保时间','如何查看维修预约进度','如何快速保修']},
-            {title: '分类问题', data: ['登录相关', '快速保修', '维保单', '迁到打卡', '零件查询']},
-          ]}
+          sections={self.state.showData}
           ItemSeparatorComponent = {ItemDivideComponent}
           renderItem={({item}) => <Text style={styles.item} onPress= {() => {self.navigation.navigate("ProblemsList")}}>{item}</Text>}
           renderSectionHeader={({section}) => <Text style={styles.sectionHeader}>{section.title}</Text>}
@@ -33,8 +31,25 @@ export default self => (
 
 
       </View>
+
+
+
+
   );
 
+
+  class ItemDesBySlef extends Component{
+    render(){
+      return(
+        <View>
+          <Text>fsdfsfddf</Text>
+          <Text>fsdfsfddf</Text>
+          <Text>fsdfsfddf</Text>
+          <Text>fsdfsfddf</Text>
+        </View>
+      );
+    }
+  }
 
   // 分割线
   class ItemDivideComponent extends Component {

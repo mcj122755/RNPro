@@ -12,10 +12,13 @@ export default class ProblemsNici extends Component{
         super(props);
         this.navigation = props.navigation;
         this.state={
-            showData:[
-                {title: '常见问题', data: ['如何查看维保时间','如何查看维修预约进度','如何快速保修']},
-               
-              ]
+            showCommonData:[
+                {title:'常见问题', data: ['如何查看维保时间','如何查看维保时间','如何查看维修预约进度']},
+                {title:'分类问题', data:[]}
+              ],
+            showCategroyData:[
+                '登录相关','快速保修','维保单','维修单','签到打卡','零件询价'
+            ]
         }
     }
 

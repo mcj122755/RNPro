@@ -20,17 +20,58 @@ export default self  => (
 
     <View style={styles.container}>
         <SectionList
-          sections={self.state.showData}
-          ItemSeparatorComponent = {ItemDivideComponent}
-          renderItem={({item}) => 
-          <View style={styles.item}>
-            <Text style={styles.text} onPress= {() => {self.navigation.navigate("ProblemsList")}}>{item}
-            </Text>
-          <Image style={styles.ImageArrow} source={require('../arrow_right.png')} resizeMode='center'/>
-          </View>
-          }
-          // renderItem={ItemByData}
           renderSectionHeader={({section}) => <Text style={styles.sectionHeader}>{section.title}</Text>}
+          sections={self.state.showCommonData}
+          ItemSeparatorComponent = {ItemDivideComponent}
+          keyExtractor={(item, index)=>index}
+          ListFooterComponent={
+            ()=>{
+              return(
+                  <View style={FooterComponentStyle.container}>
+                    <TouchableOpacity style={FooterComponentStyle.item} onPress= {() => {self.navigation.navigate("ProblemsList")}}>
+                      <Image style={FooterComponentStyle.icon} source={require('../arrow_right.png')} resizeMode='center'/>
+                      <Text style={FooterComponentStyle.title}>登录相关</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={FooterComponentStyle.item} onPress= {() => {self.navigation.navigate("ProblemsList")}}>
+                      <Image style={FooterComponentStyle.icon} source={require('../arrow_right.png')} resizeMode='center'/>
+                      <Text style={FooterComponentStyle.title}>快速保修</Text>
+                    </TouchableOpacity> 
+                    <TouchableOpacity style={FooterComponentStyle.item} onPress= {() => {self.navigation.navigate("ProblemsList")}}>
+                      <Image style={FooterComponentStyle.icon} source={require('../arrow_right.png')} resizeMode='center'/>
+                      <Text style={FooterComponentStyle.title}>维保单</Text>
+                    </TouchableOpacity> 
+                    <TouchableOpacity style={FooterComponentStyle.item} onPress= {() => {self.navigation.navigate("ProblemsList")}}>
+                      <Image style={FooterComponentStyle.icon} source={require('../arrow_right.png')} resizeMode='center'/>
+                      <Text style={FooterComponentStyle.title}>维修单</Text>
+                    </TouchableOpacity> 
+                    <TouchableOpacity style={FooterComponentStyle.item} onPress= {() => {self.navigation.navigate("ProblemsList")}}>
+                      <Image style={FooterComponentStyle.icon} source={require('../arrow_right.png')} resizeMode='center'/>
+                      <Text style={FooterComponentStyle.title}>迁到打卡</Text>
+                    </TouchableOpacity> 
+                    <TouchableOpacity style={FooterComponentStyle.item} onPress= {() => {self.navigation.navigate("ProblemsList")}}>
+                      <Image style={FooterComponentStyle.icon} source={require('../arrow_right.png')} resizeMode='center'/>
+                      <Text style={FooterComponentStyle.title}>零件询价</Text>
+                    </TouchableOpacity>     
+                  </View>
+              );
+            }
+          }
+
+          renderItem={
+          ({item}) =>
+            {
+              return(
+              <View style={styles.item}>
+                <Text style={styles.text} onPress= {() => {self.navigation.navigate("ProblemsList")}}>{item}
+                </Text>
+                <Image style={styles.ImageArrow} source={require('../arrow_right.png')} resizeMode='center'/>
+              </View>
+              )
+            }
+          }
+
+
+          
         />
 
         <View style={styles.bottomView}>
@@ -43,22 +84,6 @@ export default self  => (
 
   );
 
-  // class ItemDesBySlef extends Component{
-  //   render(){
-  //     return(
-  //       <View>
-  //         <Text>ddddd </Text>
-  //       </View>
-  //     );
-  //   }
-  // };
-  // function ItemByData(){
-  //     return(
-  //       <Text style={styles.item} onPress= {() => {self.navigation.navigate("ProblemsList")}}>{self.state.showData.title}</Text>
-  //     );
-
-  // }
-
   // 分割线
   class ItemDivideComponent extends Component {
     render() {
@@ -69,8 +94,35 @@ export default self  => (
   };
 
 function contactCustomerService(){
+  debugger;
   alert('请拨打：13073678666');
 }
+
+  const FooterComponentStyle = StyleSheet.create({
+    container:{
+      flexDirection: 'row',
+      flexWrap:'wrap',
+      backgroundColor:'white' 
+    },
+    item:{
+      height:width/4,
+      width:width/4,
+      backgroundColor:'white',
+      alignItems:'center',  
+    },
+    icon:{
+       height:32,
+       width:32,
+       backgroundColor:'blue',
+       marginTop:15,
+    },
+    title:{
+      marginTop:11,
+      fontSize:12,
+      color:'#333333',
+    },
+  })
+
   const styles = StyleSheet.create({
     container: {
      flex: 1,

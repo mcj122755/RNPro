@@ -59,15 +59,11 @@ export default self  => (
 
           renderItem={
           ({item}) =>
-            {
-              return(
-              <View style={styles.item}>
-                <Text style={styles.text} onPress= {() => {self.navigation.navigate("ProblemsList")}}>{item}
-                </Text>
-                <Image style={styles.ImageArrow} source={require('../arrow_right.png')} resizeMode='center'/>
-              </View>
-              )
-            }
+            <View style={styles.item}>
+              <Text style={styles.text} onPress= {() => {self.navigation.navigate("ProblemsList")}}>{item}
+              </Text>
+              <Image style={styles.ImageArrow} source={require('../arrow_right.png')} resizeMode='center'/>
+            </View>
           }
 
 

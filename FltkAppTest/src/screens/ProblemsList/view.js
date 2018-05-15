@@ -7,17 +7,27 @@ import{
     View,
     StyleSheet,
     Button,
-    SectionList
+    SectionList,
+    Dimensions,
+    Image,
  } from 'react-native';
+
+ const {width, height} = Dimensions.get('window');
 
 export default self => (
     <View style={styles.container}>
         <SectionList
-          sections={[
-            {title: '常见问题列表', data: ['无法登录','如何快速保修','如何查看维修预约进度','如何查看维保时间']},
-          ]}
-          renderItem={({item}) => <Text style={styles.item} onPress= {() => {self.navigation.navigate("ProblemsDetail")}}>{item}</Text>}
-          ItemSeparatorComponent = {() => <View style = {{height:1, backgroundColor:'rgba(247,247,247,1.0)'}} />}
+          ItemSeparatorComponent = {ItemDivideComponent}
+          keyExtractor={(item, index)=>index}
+          sections={self.state.showData}
+          renderItem={
+            ({item}) => 
+            <View style={styles.item}>
+              <Text style={styles.text} onPress= {() => {self.navigation.navigate("ProblemsDetail")}}>{item}
+              </Text>
+              <Image style={styles.ImageArrow} source={require('../arrow_right.png')} resizeMode='center'/>
+            </View>
+          }
           renderSectionHeader={({section}) => <Text style={styles.sectionHeader}>{section.title}</Text>}
         />
 
@@ -31,6 +41,14 @@ export default self => (
 
       </View>
   );
+
+  class ItemDivideComponent extends Component {
+    render() {
+      return (
+        <View style={{height: 0.5, backgroundColor: '#E2E2E2', marginLeft:15}}/>
+      );
+    }
+  };
 
   function contactCustomerService(){
     alert('请拨打：13073678666');
@@ -48,12 +66,28 @@ export default self => (
       height: 44,
       backgroundColor: 'rgba(247,247,247,1.0)',
     },
-    item: {
+  
+    item:{
+      height:49,
+      width:width,
+      flexDirection: 'row',
+    },
+    text: {
       padding: 15,
       fontSize: 15,
-      height: 44,
+      height: 49,
+      width:width - 49,
+      color:'#333333',
       backgroundColor: 'rgba(255,255,255,1.0)',
     },
+    ImageArrow:{
+      height:49,
+      width:49,
+      marginRight:49,
+      backgroundColor: 'rgba(255,255,255,1.0)',
+      paddingRight:70,
+    },
+
     bottomView:{
       height:108,
       paddingLeft: 0,

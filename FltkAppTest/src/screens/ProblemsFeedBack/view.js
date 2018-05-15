@@ -12,12 +12,14 @@ import{
 export default self => (
     <View style={styles.container}> 
       <View style={styles.buttonView }>
-        <TouchableOpacity style={styles.button} onPress = {contactCustomerService}>
-          <Text style={ styles.buttonText}>提个建议</Text>
+        <TouchableOpacity style={styles.selButton} onPress = {ffff('提个建议')}>
+          <Text style={ styles.selButtonText}>提个建议</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.button} onPress = {contactCustomerService}>
-          <Text style={ styles.buttonText}>出错了</Text>
+        <TouchableOpacity style={styles.button} onPress = {()=>{
+          this.style=styles.selButton
+        }}>
+          <Text style={styles.buttonText}>出错了</Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.button} onPress = {contactCustomerService}>
@@ -28,6 +30,8 @@ export default self => (
           <Text style={ styles.buttonText}>其他</Text>
         </TouchableOpacity>
       </View>
+
+      
      {/* 意见类型按钮 */}
       <View  style={TextInputViewStyle.textView}> 
         <TextInput style={TextInputViewStyle.TextInput} placeholder='您的反馈是我们前进的动力' multiline='true' onChangeText={onChangeText(this.text)} />
@@ -50,17 +54,19 @@ export default self => (
 
 
     </View>
-
-
-
   );
 
+
+
+ function ffff(ff){
+    
+  }
  function onChangeText(text){
-    alert(text);
+    alert('13073678666');
  }
 
- function contactCustomerService(){
-    alert('请拨打：13073678666');
+ function contactCustomerService(text){
+    
   }
  function clickSubmitButton(){
    alert('提交成功！');
@@ -124,17 +130,32 @@ const SubmitButtonStyle = StyleSheet.create({
       color: '#666666',
       fontSize:14,
     },
+
+    selButtonText:{
+      textAlign: 'center',
+      color: '#FFFFFF',
+      fontSize:14,
+    },
     button: {
       flex:1,
       height: 30,
-      borderRadius: 13,
+      borderRadius: 15,
       borderWidth: 0.5,
       borderColor:'#E2E2E2',
       backgroundColor: 'white',
       justifyContent: 'center',
       margin:10,
     },
-
+    selButton:{
+      flex:1,
+      height: 30,
+      borderRadius: 15,
+      borderWidth: 0.5,
+      borderColor:'white',
+      backgroundColor: '#4F9635',
+      justifyContent: 'center',
+      margin:10,
+    },
     picButton:{
       margin:10,
       height:50,

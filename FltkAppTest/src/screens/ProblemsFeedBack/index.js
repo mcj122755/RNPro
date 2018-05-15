@@ -13,7 +13,6 @@ import{
 
 const  arrViews = [];
 
-
 // 标签按钮
 class TapButton extends Component{
   constructor(props){
@@ -49,6 +48,7 @@ export default class ProblemsNici extends Component{
         this.state={
             arrayOfTitle:['提个意见','出错了','不好用','其他'],
             selIndex:0,
+            feedBackCharNumber:300,
         }
     }
     static navigationOptions = {
@@ -62,7 +62,7 @@ export default class ProblemsNici extends Component{
     //  alert(index);
     }
     
-    _creatView(){
+    _creatTapView(){
       arrViews=[];
       for (var index = 0; index < this.state.arrayOfTitle.length ; index++) {
         arrViews.push(
@@ -78,25 +78,35 @@ export default class ProblemsNici extends Component{
      return arrViews;
     }
    
+    _onChangeText(text){
+      this.setState({
+        feedBackCharNumber: 300-text.nativeEvent.text.length,
+      });
+    }
+
     
     render(){
         return (
         <View style={styles.container}> 
+        
             <View style={styles.buttonView }>
-              {this._creatView()};
+              {this._creatTapView()};
             </View>
 
             
             {/* 意见类型按钮 */}
             <View  style={TextInputViewStyle.textView}>
-            {/* onChangeText={onChangeText(this.text)}  */}
-                <TextInput style={TextInputViewStyle.TextInput} placeholder='您的反馈是我们前进的动力' multiline='true'  />
-                
+              <TextInput style={TextInputViewStyle.TextInput}
+                placeholder='您的反馈是我们前进的动力'
+                multiline={true} 
+                maxLength={300}
+                onChange={this._onChangeText.bind(this)}
+                />
             </View>
             
             <Text style={TextInputViewStyle.capion}> 
                 您最多可以输入
-                <Text style={{color:'#4F9635'}}>300</Text>
+                <Text style={{color:'#4F9635'}}>{this.state.feedBackCharNumber}</Text>
                 字
             </Text>
 
@@ -117,11 +127,6 @@ export default class ProblemsNici extends Component{
 
 
 
-
-
-function ffff(ff){
-    
-}
 function onChangeText(text){
   alert('13073678666');
 }

@@ -41,7 +41,7 @@ class PickImageClass extends Component {
   render() {
      return (
        <View style={pickImageStyles.container}>
-        <Text style={pickImageStyles.item} onPress={this.choosePic.bind(this)}>请拍摄/截屏问题照片帮助我们更快解决问题</Text>
+        <Text style={pickImageStyles.item} onPress={this.choosePic.bind(this)}>选择照片</Text>
         <Image source={this.state.avatarSource} style={pickImageStyles.image} />
        </View>
      );
@@ -88,8 +88,8 @@ const pickImageStyles = StyleSheet.create({
    textAlign:'center'
  },
  image:{
-  height:198,
-  width:300,
+  height:150,
+  width:200,
   alignSelf:'center',
 },
 });
@@ -141,7 +141,7 @@ export default class ProblemsNici extends Component{
       this.setState({
         selIndex:index,
       });
-    //  alert(index);
+  
     }
     
     _creatTapView(){
@@ -195,7 +195,7 @@ export default class ProblemsNici extends Component{
                 <Text style={{color:'#4F9635'}}>{this.state.feedBackCharNumber}</Text>
                 字
             </Text>
-            <PickImageClass />
+            <PickImageClass style={styles.picButton}/>
             {/* <TouchableOpacity style={styles.picButton} onPress = {contactCustomerService}>
                 <Text style={styles.picText}>请拍摄/截屏问题照片帮助我们更快解决问题</Text>
             </TouchableOpacity> */}

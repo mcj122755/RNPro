@@ -20,7 +20,7 @@ export default class ProblemsNici extends Component{
         
         super(props);
         this.navigation = props.navigation;
-        const {params} = this.props.navigation.state;
+        const  {params} = this.props.navigation.state;
         const id = params.info;
         this.state={
             showData:[

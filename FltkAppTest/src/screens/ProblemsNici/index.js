@@ -14,6 +14,7 @@ import{
 
  } from 'react-native';
  const {width, height} = Dimensions.get('window');
+ var url = 'https://www.apiopen.top/satinApi?type=1&page=1';
 
 export default class ProblemsNici extends Component{
 
@@ -27,7 +28,8 @@ export default class ProblemsNici extends Component{
               ],
             showCategroyData:[
                 '登录相关','快速保修','维保单','维修单','签到打卡','零件询价'
-            ]
+            ],
+            testDataString:"33",
         }
     }
 
@@ -38,7 +40,7 @@ export default class ProblemsNici extends Component{
     _creatCategroyViews(){
         var arrayViews = [];
         for(var i = 0; i < this.state.showCategroyData.length;i ++){
-          {let titleName = this.state.showCategroyData[i];}
+          let titleName = this.state.showCategroyData[i];
             arrayViews.push( 
             <TouchableOpacity style={FooterComponentStyle.item} onPress= {() => {this.navigation.navigate("ProblemsList",{info:titleName}) }} key={i}>
                 <Image style={FooterComponentStyle.icon} source={require('../arrow_right.png')} resizeMode='center'/>
@@ -49,7 +51,20 @@ export default class ProblemsNici extends Component{
         return arrayViews;
     }
 
+    _fetchData(){
+      fetch(url, {method:'GET'}).then((response) => response.json()).then((responseData)=>{
+        this.setState({
+          testDataString:responseData.msg,
+        });
+        
+      }).catch((error)=>{
+        callback(error);
+      });
+    }
 
+    componentDidMount(){
+      this._fetchData();
+    }
     render(){
         return (
             <View style={styles.container}>
@@ -71,7 +86,7 @@ export default class ProblemsNici extends Component{
           renderItem={
           ({item}) =>
             <View style={styles.item}>
-              <Text style={styles.text} onPress= {() => {this.navigation.navigate("ProblemsList")}}>{item}
+              <Text style={styles.text} onPress= {() => {this.navigation.navigate("ProblemsList",{info:item})}}>{item}
               </Text>
               <Image style={styles.ImageArrow} source={require('../arrow_right.png')} resizeMode='center'/>
             </View>
@@ -82,7 +97,7 @@ export default class ProblemsNici extends Component{
         />
 
         <View style={styles.bottomView}>
-          <Text style={styles.bottomViewTitle}> 还需要更多帮助？ </Text>
+          <Text style={styles.bottomViewTitle}>需要更多帮助</Text>
           <TouchableOpacity style={styles.button} onPress = {contactCustomerService}>
           <Text style={styles.buttonText}>联系客服</Text>
           </TouchableOpacity>
@@ -101,9 +116,13 @@ export default class ProblemsNici extends Component{
     }
   };
 
+  
+  
 function contactCustomerService(){
     alert('请拨打：13073678666');
-  }
+    // https://www.apiopen.top/satinApi?type=1&page=1
+
+}
   
   
   const FooterComponentStyle = StyleSheet.create({

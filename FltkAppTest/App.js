@@ -21,7 +21,6 @@
 import TabarComponent from './src/components/tabBarComponent'
 import React, {Component} from 'react';
 
-
  export default class RootApp extends Component{
      constructor(props){
          super(props);

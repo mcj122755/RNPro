@@ -29,3 +29,16 @@ const AppNavigation = StackNavigator(
 export default() => <AppNavigation />
 
 
+// import React from 'react';
+// import {StackNavigator} from 'react-navigation';
+// import TabarComponent from './src/components/tabBarComponent';
+// const AppNavigation = StackNavigator(
+
+//     {
+//         TabarComponent:{
+//             screen:TabarComponent
+//         }
+//     }
+// );
+
+// export default() => <AppNavigation />

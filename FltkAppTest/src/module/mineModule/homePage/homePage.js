@@ -21,7 +21,9 @@ import{
     constructor (props){
         super(props);
         this.state={
-          showData:[{title:'', data:['']}, {title:'', data:['帮助与反馈','使用条款','关于胄天']}],
+          showData:[{title:'所属公司', data:['']}, {title:'', data:['帮助与反馈','使用条款','关于胄天']}],
+          companyNameStr:'浙江胄天科技有限公司',
+          companyAddress:'浙江省杭州市滨江区六和路368号海创基地',
         };
     }
 
@@ -33,36 +35,79 @@ import{
         var listHeaderComponentView = [];
         listHeaderComponentView.push(
             <View style={listHeaderComponentStyls.container} key='1'>
-                <TouchableOpacity style={listHeaderComponentStyls.setttingTouchableOpacity}
+              <View style={listHeaderComponentStyls.header}>
+              <TouchableOpacity style={headerStyles.setttingTouchableOpacity}
                 onPress={()=> {}}
                 >
+                    <Image source={require('./assets/topbar-set.png')} style={headerStyles.setttingImage}></Image>
+                    </TouchableOpacity>
+
+                    <Text style={headerStyles.settingTitle}>
+                        我的
+                    </Text>
+
+                <TouchableOpacity style={headerStyles.messageTouchableOpacity}
+                onPress={()=> {}}
+                >
+                 <Image source={require('./assets/topbar-message.png')} style={headerStyles.setttingImage}></Image>
                 </TouchableOpacity>
+              </View>
+              <TouchableOpacity style={listHeaderComponentStyls.mine}>
+              {/* 头像 */}
+                  <Image  source={require('./assets/icon.png')} style={mineInfoStyles.icon} ></Image>
+                  <View style={mineInfoStyles.info}>
+                    <Text style={infoStyles.name}>张小宝</Text>
+                    <Text style={infoStyles.descr}>管理员 xiaobaoZhang</Text>
+                  </View>
+                  <View style={mineInfoStyles.arrow}>
+                    <Image style={mineInfoStyles.image} source={require('./assets/arrow.png')}></Image>
+                  </View>
+              </TouchableOpacity>      
+
             </View>
         )
         return listHeaderComponentView;
     }
+
+    _creatListItem({item, index}){
+        if(item===''){
+            return (
+             <TouchableOpacity style={companyInfoStyles.container}>
+                <Image  source={require('./assets/icon.png')} style={companyInfoStyles.icon} ></Image>
+                <View style={companyInfoStyles.info}>
+                    <Text style={companyInfoStyles.companyName}>{this.state.companyNameStr}</Text>
+                    <Text style={companyInfoStyles.companyAddress}>{this.state.companyAddress}</Text>
+                </View>
+                <Image style={[companyInfoStyles.arrow,{position:'absolute',right:-10}]}  source={require('../../../assets/arrow_right.png')} resizeMode='center'/>
+              </TouchableOpacity>
+            );
+        }else{
+            return (
+                <View style={styles.item}>
+                <Text style={styles.text} onPress= {() => {this.navigation.navigate("ProblemsList",{info:item})}}>{item}
+                </Text>
+                <Image style={styles.ImageArrow} source={require('../../../assets/arrow_right.png')} resizeMode='center'/>
+              </View>
+            );
+        }
+    }
+
     render(){
         return(
             <View style={styles.viewStyle}>
+
+                {/* 头部控件 */}
+                <View style={styles.listHeaderComponent}>
+                 {this._creatListHeaderComponent()}
+                </View>
+
+
                 <SectionList style={styles.sectionList}
-                    renderSectionHeader={({section})=> <Text style={styles.sectionHeader}></Text>}
+                    renderSectionHeader={({section})=> <Text style={styles.sectionHeader}>{section.title}</Text>}
                     sections={this.state.showData}
                     ItemSeparatorComponent = {ItemDivideComponent}
                     keyExtractor={(item, index)=>index}
-                    
-                    renderItem={
-                        ({item}) =>
-                          <View style={styles.item}>
-                            <Text style={styles.text} onPress= {() => {this.navigation.navigate("ProblemsList",{info:item})}}>{item}
-                            </Text>
-                            <Image style={styles.ImageArrow} source={require('../../../assets/arrow_right.png')} resizeMode='center'/>
-                          </View>
-                        }
-                    ListHeaderComponent={()=>{return(
-                        <View style={styles.listHeaderComponent}>
-                            {this._creatListHeaderComponent()}
-                        </View>
-                    )}}
+                    renderItem = {this._creatListItem.bind(this)}
                 />
             </View>
         );
@@ -80,19 +125,173 @@ import{
     }
   };
 
+ const companyInfoStyles = StyleSheet.create({
+     container:{
+         width:width,
+         height:64,
+         flexDirection: 'row',
+         alignItems:'center',
+         backgroundColor:'#FFFFFF',
+     },
+     icon:{
+        width:32,
+        height:32,
+        marginLeft:16,
+        borderRadius:16,
+     },
+     info:{
+        height:45,
+        width:width-100,
+        flexDirection: 'column',
+        marginLeft:10,
+     },
+
+     arrow:{
+        height:49,
+        width:49,
+        backgroundColor: 'rgba(255,255,255,1.0)',
+     },
+     companyName:{
+        width:width-100,
+        height:16,
+        fontSize:16,
+        color:'#333333',
+     },
+     companyAddress:{
+        width:width-100,
+        height:16,
+        fontSize:12,
+        color:'#666666',
+        marginTop:10,
+     },
+
+ })
+ const headerStyles = StyleSheet.create({
+    setttingTouchableOpacity:{
+        width:22,
+        height:22,
+        marginLeft:10,
+        marginTop:0,
+    },
+    
+    setttingImage:{
+        flex:1,
+        width:22,
+        height:22,
+    },
+
+    settingTitle:{
+        height:22,
+        width:width-64,
+        marginTop:0,
+        fontWeight:'bold',
+        color:'#FFFFFF',
+        fontSize:18,
+        textAlign:'center',  
+    },
+    messageTouchableOpacity:{
+        width:22,
+        height:22,
+        marginRight:10,
+        marginTop:0,
+    },
+ })
+
+ const mineInfoStyles = StyleSheet.create({
+    icon:{
+      width:60,
+      height:60,
+      marginLeft:16,
+      borderRadius:30,
+    },
+    info:{
+        height:60,
+        marginLeft:16,
+        width:width-150,
+    },
+    arrow:{
+        height:60,
+        marginRight:0,
+        width:60,
+    },
+    image:{
+        paddingRight:85,
+        height:60,
+        width:60,
+        resizeMode:'center',
+    },
+ })
+
+ const infoStyles = StyleSheet.create({
+   name:{
+     marginTop:12,
+     width:width-150,
+     height:30,
+     fontSize:18,
+     color:'#FFFFFF'
+   },
+   descr:{
+     marginTop:-2,
+     width:width-150,
+     height:30,
+     fontSize:12,
+     color:'#FFFFFF'  
+   },
+ })
+
+
   const listHeaderComponentStyls = StyleSheet.create({
     container:{
       backgroundColor:'#4A90E2',
       flex: 1,
     },
-    setttingTouchableOpacity:{
-        width:22,
+    header:{
         height:22,
-        marginLeft:10,
+        marginLeft:0,
+        marginRight:0,
         marginTop:33,
-        backgroundColor:'red',
+        flexDirection:'row'
+    },
+    mine:{
+        height:60,
+        marginLeft:0,
+        marginRight:0,
+        marginTop:15,
+        flexDirection:'row',
     },
 
+
+    // setttingTouchableOpacity:{
+    //     width:22,
+    //     height:22,
+    //     marginLeft:10,
+    //     marginTop:33,
+    //     backgroundColor:'red',
+    // },
+    // settingTitle:{
+    //     height:22,
+    //     width:width-64,
+    //     marginTop:33,
+    //     fontWeight:'bold',
+    //     color:'#FFFFFF',
+    //     fontSize:18,
+    //     textAlign:'center',  
+    // },
+    // messageTouchableOpacity:{
+    //     width:22,
+    //     height:22,
+    //     marginRight:10,
+    //     marginTop:33,
+    //     backgroundColor:'red',
+    // },
+
+    // mineTouchableOpacity:{
+    //     width:width,
+    //     height:60,
+    //     marginLeft:0,
+    //     marginTop:74,
+    //     backgroundColor:'red',
+    // },
  });
 
  const styles = StyleSheet.create({
@@ -114,9 +313,9 @@ import{
         paddingLeft: 15,
         paddingRight: 10,
         paddingBottom: 2,
-        fontSize: 11,
-        color:'#787878',
-        height:15 ,
+        fontSize: 12,
+        color:'#999999',
+        height:20 ,
         backgroundColor: 'rgba(247,247,247,1.0)',
       },
       item:{

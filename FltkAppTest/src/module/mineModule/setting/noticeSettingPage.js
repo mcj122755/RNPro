@@ -9,6 +9,8 @@ import{
     SectionList,
     Dimensions,
     Image,
+    Platform,
+    Switch,
  } from 'react-native';
 
  const {width, height} = Dimensions.get('window');
@@ -39,18 +41,51 @@ import{
      };
 
      _creatListHeader({section}){
-        let heightHeader =  section.title=="sectionOne" ? 60:10;
-        return (
-           <View style={[contentViewStyles.sectionHeader,{height:heightHeader}]}></View>
-         );
+        let heightHeader;
+        if(section.title=="sectionOne"){
+            heightHeader =  Platform.OS == 'ios' ? 70:30;
+            let notesStr = Platform.OS == 'ios' ? '您已在系统中关闭lidar的通知。如需打开，请在iPhone的设置”设置“-”通知“功能中，找到应用程序lidar，打开”允许通知“':'通知关闭后，通知提示将不显示';
+            return (
+                <View style={[contentViewStyles.sectionHeader,{height:heightHeader,alignItems:'center',justifyContent:'center'}]}>
+                    <Text style={{fontSize:13, color:'#666666',width:width-30}}>
+                        {notesStr}
+                    </Text>
+                </View>
+              );
+        }else{
+            heightHeader = 10;
+            return (
+                <View style={[contentViewStyles.sectionHeader,{height:heightHeader}]}></View>
+              );
+        }
+     }
+
+
+     _switchOnValueChange(){
+         debugger;
+         console.log();
+
      }
 
      _creatListItem({item, index}){
-        return (
-            <TouchableOpacity style={contentViewStyles.item}>
-                
-            </TouchableOpacity>
-        );
+
+        if(item=='预警通知'){
+            return (
+                <View style={contentViewStyles.item}>
+                    <Text style={contentViewStyles.text}>{item}
+                    </Text>
+                </View>
+            );
+        }else{
+            return (
+                <View style={contentViewStyles.item}>
+                    <Text style={contentViewStyles.text}>{item}
+                    </Text>
+                    <Switch  style={{position:'absolute',right:10}} onValueChange={this._switchOnValueChange.bind(this)}></Switch>
+                </View>
+            );
+        }
+        
     }
      render(){
          return(

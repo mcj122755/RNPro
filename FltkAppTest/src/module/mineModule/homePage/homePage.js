@@ -7,7 +7,6 @@ import{
     Text, 
     View,
     StyleSheet,
-    Button,
     SectionList,
     Dimensions,
     Image,
@@ -20,6 +19,7 @@ import{
 
     constructor (props){
         super(props);
+        this.navigation = props.navigation;
         this.state={
           showData:[{title:'所属公司', data:['']}, {title:'', data:['帮助与反馈','使用条款','关于胄天']}],
           companyNameStr:'浙江胄天科技有限公司',
@@ -37,7 +37,7 @@ import{
             <View style={listHeaderComponentStyls.container} key='1'>
               <View style={listHeaderComponentStyls.header}>
               <TouchableOpacity style={headerStyles.setttingTouchableOpacity}
-                onPress={()=> {}}
+                onPress= {() => {this.navigation.navigate("SettingPage",{info:null})}}
                 >
                     <Image source={require('./assets/topbar-set.png')} style={headerStyles.setttingImage}></Image>
                     </TouchableOpacity>
@@ -84,10 +84,10 @@ import{
         }else{
             return (
                 <View style={styles.item}>
-                <Text style={styles.text} onPress= {() => {this.navigation.navigate("ProblemsList",{info:item})}}>{item}
-                </Text>
-                <Image style={styles.ImageArrow} source={require('../../../assets/arrow_right.png')} resizeMode='center'/>
-              </View>
+                    <Text style={styles.text} onPress= {() => {this.navigation.navigate("ProblemsList",{info:item})}}>{item}
+                    </Text>
+                    <Image style={styles.ImageArrow} source={require('../../../assets/arrow_right.png')} resizeMode='center'/>
+                </View>
             );
         }
     }
@@ -259,39 +259,6 @@ import{
         marginTop:15,
         flexDirection:'row',
     },
-
-
-    // setttingTouchableOpacity:{
-    //     width:22,
-    //     height:22,
-    //     marginLeft:10,
-    //     marginTop:33,
-    //     backgroundColor:'red',
-    // },
-    // settingTitle:{
-    //     height:22,
-    //     width:width-64,
-    //     marginTop:33,
-    //     fontWeight:'bold',
-    //     color:'#FFFFFF',
-    //     fontSize:18,
-    //     textAlign:'center',  
-    // },
-    // messageTouchableOpacity:{
-    //     width:22,
-    //     height:22,
-    //     marginRight:10,
-    //     marginTop:33,
-    //     backgroundColor:'red',
-    // },
-
-    // mineTouchableOpacity:{
-    //     width:width,
-    //     height:60,
-    //     marginLeft:0,
-    //     marginTop:74,
-    //     backgroundColor:'red',
-    // },
  });
 
  const styles = StyleSheet.create({

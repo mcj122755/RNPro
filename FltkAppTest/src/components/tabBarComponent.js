@@ -3,6 +3,8 @@ import  React,{Component} from 'react';
 import  TabNavigator from 'react-native-tab-navigator';
 import {StackNavigator} from 'react-navigation';
 import HomePage from '../module/mineModule/homePage/homePage';
+import SettingPage from '../module/mineModule/setting/settingPage'
+import NoticeSettingPage from '../module/mineModule/setting/noticeSettingPage'
 import ProblemsNici from  '../module/mineModule/feedBack/screens/ProblemsNici';
 import ProblemsFeedBack from  '../module/mineModule/feedBack/screens/ProblemsFeedBack';
 import {
@@ -20,7 +22,13 @@ const HomeNavigator = StackNavigator(
     {
         HomePage:{
             screen:HomePage
-        }
+        },
+        SettingPage:{
+            screen:SettingPage
+        },
+        NoticeSettingPage:{
+            screen:NoticeSettingPage
+        },
     }
 );
 
@@ -45,15 +53,15 @@ export default class TabBarComponet extends Component{
             <View style={styles.contaner}>
                 <TabNavigator tabBarStyle={styles.tab}>
                     <TabNavigator.Item 
-                    selected={this.state.selectedTab==='home'} 
-                    title="首页" 
-                    renderIcon={()=> <Image source={tab_sel_1} style={styles.tabIcon}/>} 
-                    renderSelectedIcon={()=> <Image source={tab_nor_1} style={styles.tabIcon}/>}
-                    onPress={()=> this.setState({selectedTab:'home'})}
-                >
-                   <HomeNavigator/>
-                   
-                </TabNavigator.Item>
+                        selected={this.state.selectedTab==='home'} 
+                        title="首页" 
+                        renderIcon={()=> <Image source={tab_sel_1} style={styles.tabIcon}/>} 
+                        renderSelectedIcon={()=> <Image source={tab_nor_1} style={styles.tabIcon}/>}
+                        onPress={()=> this.setState({selectedTab:'home'})}
+                    >
+                    <HomeNavigator/>
+                    
+                    </TabNavigator.Item>
 
                     <TabNavigator.Item 
                      selected={this.state.selectedTab==='mine'}

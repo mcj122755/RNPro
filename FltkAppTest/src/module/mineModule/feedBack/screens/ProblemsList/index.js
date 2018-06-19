@@ -14,7 +14,7 @@ import{
 
  const {width, height} = Dimensions.get('window');
 
-export default class ProblemsNici extends Component{
+export default class ProblemsList extends Component{
 
     constructor (props){
         
@@ -30,9 +30,13 @@ export default class ProblemsNici extends Component{
         }
     }
 
-    static navigationOptions = {
-        title:"帮助列表"
+    _goBack(){
+      this.props.navigation.goBack();
     }
+
+    static navigationOptions = {
+      header:null
+    };
 
    componentDidMount(){
     alert(this.state.info);
@@ -41,28 +45,41 @@ export default class ProblemsNici extends Component{
     render(){
         return (
             <View style={styles.container}>
-            <SectionList
-              ItemSeparatorComponent = {ItemDivideComponent}
-              keyExtractor={(item, index)=>index}
-              sections={this.state.showData}
-              renderItem={
-                ({item}) => 
-                <View style={styles.item}>
-                  <Text style={styles.text} onPress= {() => {this.navigation.navigate("ProblemsDetail")}}>{item}
-                  </Text>
-                  <Image style={styles.ImageArrow} source={require('../arrow_right.png')} resizeMode='center'/>
+
+            {/* bar */}
+              <View style={styles.navigationBar}>
+                      <View style={navigationBarStyles.viewStyle}>
+                          <TouchableOpacity style={navigationBarStyles.leftTouchableOpacity} onPress={this._goBack.bind(this)}>
+                              <Image resizeMode='stretch' source={require('../../../../../assets/topbar-back.png')} style={navigationBarStyles.leftImage}></Image>
+                          </TouchableOpacity>
+                          <Text style={navigationBarStyles.title}>问题列表</Text>
+                          <TouchableOpacity style={navigationBarStyles.rightTouchableOpacity}>
+                              <Image resizeMode='stretch' source={require('../../assets/topbar-search.png')} style={navigationBarStyles.rightImage}></Image>
+                          </TouchableOpacity>
+                      </View>
                 </View>
-              }
-              renderSectionHeader={({section}) => <Text style={styles.sectionHeader}>{section.title}</Text>}
-            />
+                <SectionList
+                  ItemSeparatorComponent = {ItemDivideComponent}
+                  keyExtractor={(item, index)=>index}
+                  sections={this.state.showData}
+                  renderItem={
+                    ({item}) => 
+                    <View style={styles.item}>
+                      <Text style={styles.text} onPress= {() => {this.navigation.navigate("ProblemsDetail")}}>{item}
+                      </Text>
+                      <Image style={styles.ImageArrow} source={require('../arrow_right.png')} resizeMode='center'/>
+                    </View>
+                  }
+                  renderSectionHeader={({section}) => <Text style={styles.sectionHeader}>{section.title}</Text>}
+                />
     
     
-            <View style={styles.bottomView}>
-              <Text style={styles.bottomViewTitle}>需要更多帮助</Text>
-              <TouchableOpacity style={styles.button} onPress = {contactCustomerService}>
-              <Text style={styles.buttonText}>联系客服</Text>
-              </TouchableOpacity>
-            </View>
+              <View style={styles.bottomView}>
+                <Text style={styles.bottomViewTitle}>需要更多帮助</Text>
+                <TouchableOpacity style={styles.button} onPress = {contactCustomerService}>
+                <Text style={styles.buttonText}>联系客服</Text>
+                </TouchableOpacity>
+              </View>
     
           </View>
         );
@@ -93,6 +110,7 @@ class ItemDivideComponent extends Component {
       fontSize: 15,
       height: 44,
       backgroundColor: 'rgba(247,247,247,1.0)',
+      color:'#4A90E2',
     },
   
     item:{
@@ -147,4 +165,47 @@ class ItemDivideComponent extends Component {
         color: 'rgba(79,150,53,1)',
         fontSize:18,
     },
+    navigationBar:{
+      width:width,
+      height:64,
+      backgroundColor:'#FFFFFF'
+    },
   })
+
+  const navigationBarStyles = StyleSheet.create({
+    viewStyle:{
+        width:width,
+        height:31,
+        flexDirection: 'row',
+        marginTop:30,
+    },
+    leftTouchableOpacity:{
+       height:31,
+       width:31,
+       flexDirection: 'row',
+       alignItems:'center',
+    },
+    leftImage:{
+       height:23,
+       width:23,
+       marginLeft:10,
+    },
+    title:{
+       fontSize: 18,
+       color:'#333333',
+       width:width - 62,
+       height:31,
+       textAlign:'center',
+       marginTop:5, 
+    },
+    rightTouchableOpacity:{
+       height:31,
+       width:31,
+       flexDirection: 'row',
+       alignItems:'center',
+    },
+    rightImage:{
+       height:23,
+       width:23,
+    },
+})

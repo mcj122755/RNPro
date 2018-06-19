@@ -10,10 +10,12 @@ import{
     Button,
     Image,
     AlertIOS,
+    Dimensions,
  } from 'react-native';
 
  //图片选择器
 import { showImagePicker } from 'react-native-image-picker';
+const {width, height} = Dimensions.get('window');
  
 //图片选择器参数设置
 var options = {
@@ -133,9 +135,13 @@ export default class ProblemsNici extends Component{
             feedBackCharNumber:300,
         }
     }
-    static navigationOptions = {
-        title:"意见反馈"
+    _goBack(){
+      this.props.navigation.goBack();
     }
+
+    static navigationOptions = {
+      header:null
+    };
     
     _check_callback(index){
       this.setState({
@@ -175,6 +181,17 @@ export default class ProblemsNici extends Component{
         return (
         <View style={styles.container}> 
         
+        {/* bar */}
+          <View style={styles.navigationBar}>
+                  <View style={navigationBarStyles.viewStyle}>
+                      <TouchableOpacity style={navigationBarStyles.leftTouchableOpacity} onPress={this._goBack.bind(this)}>
+                          <Image resizeMode='stretch' source={require('../../../../../assets/topbar-back.png')} style={navigationBarStyles.leftImage}></Image>
+                      </TouchableOpacity>
+                      <Text style={navigationBarStyles.title}>帮助与反馈</Text>
+                      
+                  </View>
+            </View>
+            
             <View style={styles.buttonView }>
               {this._creatTapView()};
             </View>
@@ -321,5 +338,47 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     color: '#999999',
     fontSize:11,
+  },
+  navigationBar:{
+    width:width,
+    height:64,
+    backgroundColor:'#FFFFFF'
+  },
+})
+const navigationBarStyles = StyleSheet.create({
+  viewStyle:{
+      width:width,
+      height:31,
+      flexDirection: 'row',
+      marginTop:30,
+  },
+  leftTouchableOpacity:{
+     height:31,
+     width:31,
+     flexDirection: 'row',
+     alignItems:'center',
+  },
+  leftImage:{
+     height:23,
+     width:23,
+     marginLeft:10,
+  },
+  title:{
+     fontSize: 18,
+     color:'#333333',
+     width:width - 62,
+     height:31,
+     textAlign:'center',
+     marginTop:5, 
+  },
+  rightTouchableOpacity:{
+     height:31,
+     width:31,
+     flexDirection: 'row',
+     alignItems:'center',
+  },
+  rightImage:{
+     height:23,
+     width:23,
   },
 })

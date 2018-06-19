@@ -9,6 +9,10 @@ import NoticeSettingPage from '../module/mineModule/setting/noticeSettingPage'
 import PersonalInfoSettingPage from '../module/mineModule/setting/personalInfoSettingPage'
 import ProblemsNici from  '../module/mineModule/feedBack/screens/ProblemsNici';
 import ProblemsFeedBack from  '../module/mineModule/feedBack/screens/ProblemsFeedBack';
+import ProblemsList from  '../module/mineModule/feedBack/screens/ProblemsList';
+import ProblemsDetail from  '../module/mineModule/feedBack/screens/ProblemsDetail';
+
+
 import {
  View,
  Image,
@@ -33,7 +37,19 @@ const HomeNavigator = StackNavigator(
         },
         PersonalInfoSettingPage:{
             screen:PersonalInfoSettingPage
-        }
+        },
+        ProblemsFeedBack:{
+            screen:ProblemsFeedBack
+        },
+        ProblemsNici:{
+            screen:ProblemsNici
+        },
+        ProblemsList:{
+            screen:ProblemsList
+        },
+        ProblemsDetail:{
+            screen:ProblemsDetail
+        },
     }
 );
 

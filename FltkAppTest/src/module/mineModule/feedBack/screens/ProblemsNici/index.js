@@ -31,11 +31,14 @@ export default class ProblemsNici extends Component{
             ],
             testDataString:"33",
         }
-    }
+      }
+      _goBack(){
+        this.props.navigation.goBack();
+      }
 
-    static navigationOptions = {
-        title:"帮助与反馈"
-    }
+      static navigationOptions = {
+        header:null
+      };
 
     _creatCategroyViews(){
         var arrayViews = [];
@@ -68,29 +71,42 @@ export default class ProblemsNici extends Component{
     render(){
         return (
             <View style={styles.container}>
-        <SectionList
-          renderSectionHeader={({section}) => <Text style={styles.sectionHeader}>{section.title}</Text>}
-          sections={this.state.showCommonData}
-          ItemSeparatorComponent = {ItemDivideComponent}
-          keyExtractor={(item, index)=>index}
-          ListFooterComponent={
-            ()=>{
-              return(
-                  <View style={FooterComponentStyle.container}>
-                  {this._creatCategroyViews()}
-                  </View>
-              );
-            }
-          }
+            {/* bar */}
+              <View style={styles.navigationBar}>
+                      <View style={navigationBarStyles.viewStyle}>
+                          <TouchableOpacity style={navigationBarStyles.leftTouchableOpacity} onPress={this._goBack.bind(this)}>
+                              <Image resizeMode='stretch' source={require('../../../../../assets/topbar-back.png')} style={navigationBarStyles.leftImage}></Image>
+                          </TouchableOpacity>
+                          <Text style={navigationBarStyles.title}>帮助与反馈</Text>
+                          <TouchableOpacity style={navigationBarStyles.rightTouchableOpacity}>
+                              <Image resizeMode='stretch' source={require('../../assets/topbar-search.png')} style={navigationBarStyles.rightImage}></Image>
+                          </TouchableOpacity>
+                      </View>
+                </View>
 
-          renderItem={
-          ({item}) =>
-            <View style={styles.item}>
-              <Text style={styles.text} onPress= {() => {this.navigation.navigate("ProblemsList",{info:item})}}>{item}
-              </Text>
-              <Image style={styles.ImageArrow} source={require('../arrow_right.png')} resizeMode='center'/>
-            </View>
-          }
+              <SectionList
+                renderSectionHeader={({section}) => <Text style={styles.sectionHeader}>{section.title}</Text>}
+                sections={this.state.showCommonData}
+                ItemSeparatorComponent = {ItemDivideComponent}
+                keyExtractor={(item, index)=>index}
+                ListFooterComponent={
+                  ()=>{
+                    return(
+                        <View style={FooterComponentStyle.container}>
+                        {this._creatCategroyViews()}
+                        </View>
+                    );
+                  }
+                }
+
+                renderItem={
+                ({item}) =>
+                  <View style={styles.item}>
+                    <Text style={styles.text} onPress= {() => {this.navigation.navigate("ProblemsDetail",{info:item})}}>{item}
+                    </Text>
+                    <Image style={styles.ImageArrow} source={require('../arrow_right.png')} resizeMode='center'/>
+                  </View>
+                }
 
 
           
@@ -217,4 +233,47 @@ function contactCustomerService(){
         color: 'rgba(79,150,53,1)',
         fontSize:18,
     },
+    navigationBar:{
+      width:width,
+      height:64,
+      backgroundColor:'#FFFFFF'
+    },
   })
+
+  const navigationBarStyles = StyleSheet.create({
+    viewStyle:{
+        width:width,
+        height:31,
+        flexDirection: 'row',
+        marginTop:30,
+    },
+    leftTouchableOpacity:{
+       height:31,
+       width:31,
+       flexDirection: 'row',
+       alignItems:'center',
+    },
+    leftImage:{
+       height:23,
+       width:23,
+       marginLeft:10,
+    },
+    title:{
+       fontSize: 18,
+       color:'#333333',
+       width:width - 62,
+       height:31,
+       textAlign:'center',
+       marginTop:5, 
+    },
+    rightTouchableOpacity:{
+       height:31,
+       width:31,
+       flexDirection: 'row',
+       alignItems:'center',
+    },
+    rightImage:{
+       height:23,
+       width:23,
+    },
+})

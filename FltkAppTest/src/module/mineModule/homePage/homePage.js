@@ -84,7 +84,7 @@ import{
             );
         }else{
             return (
-                <TouchableOpacity style={styles.item} onPress= {() => {this.navigation.navigate("ProblemsList",{info:item})}}>
+                <TouchableOpacity style={styles.item} onPress= {() => {this.navigation.navigate("ProblemsNici",{info:item})}}>
                     <Text style={styles.text}>{item}
                     </Text>
                     <Image style={styles.ImageArrow} source={require('../../../assets/arrow_right.png')} resizeMode='center'/>

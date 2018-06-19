@@ -4,7 +4,9 @@ import  TabNavigator from 'react-native-tab-navigator';
 import {StackNavigator} from 'react-navigation';
 import HomePage from '../module/mineModule/homePage/homePage';
 import SettingPage from '../module/mineModule/setting/settingPage'
+
 import NoticeSettingPage from '../module/mineModule/setting/noticeSettingPage'
+import PersonalInfoSettingPage from '../module/mineModule/setting/personalInfoSettingPage'
 import ProblemsNici from  '../module/mineModule/feedBack/screens/ProblemsNici';
 import ProblemsFeedBack from  '../module/mineModule/feedBack/screens/ProblemsFeedBack';
 import {
@@ -29,6 +31,9 @@ const HomeNavigator = StackNavigator(
         NoticeSettingPage:{
             screen:NoticeSettingPage
         },
+        PersonalInfoSettingPage:{
+            screen:PersonalInfoSettingPage
+        }
     }
 );
 

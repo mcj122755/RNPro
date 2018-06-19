@@ -52,7 +52,8 @@ import{
                  <Image source={require('./assets/topbar-message.png')} style={headerStyles.setttingImage}></Image>
                 </TouchableOpacity>
               </View>
-              <TouchableOpacity style={listHeaderComponentStyls.mine}>
+              
+              <TouchableOpacity style={listHeaderComponentStyls.mine} onPress= {() => {this.navigation.navigate("PersonalInfoSettingPage",{info:null})}}>
               {/* 头像 */}
                   <Image  source={require('./assets/icon.png')} style={mineInfoStyles.icon} ></Image>
                   <View style={mineInfoStyles.info}>
@@ -83,11 +84,11 @@ import{
             );
         }else{
             return (
-                <View style={styles.item}>
-                    <Text style={styles.text} onPress= {() => {this.navigation.navigate("ProblemsList",{info:item})}}>{item}
+                <TouchableOpacity style={styles.item} onPress= {() => {this.navigation.navigate("ProblemsList",{info:item})}}>
+                    <Text style={styles.text}>{item}
                     </Text>
                     <Image style={styles.ImageArrow} source={require('../../../assets/arrow_right.png')} resizeMode='center'/>
-                </View>
+                </TouchableOpacity>
             );
         }
     }

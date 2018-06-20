@@ -2,6 +2,7 @@
 import React, {Component} from 'react';
 import {StackNavigator}  from 'react-navigation';
 import {TouchableOpacity} from 'react-native';
+import Iconfont  from '../../../../component/Iconfont';
 
 import{
     Text, 
@@ -36,10 +37,11 @@ import{
         listHeaderComponentView.push(
             <View style={listHeaderComponentStyls.container} key='1'>
               <View style={listHeaderComponentStyls.header}>
-              <TouchableOpacity style={headerStyles.setttingTouchableOpacity}
-                onPress= {() => {this.navigation.navigate("SettingPage",{info:null})}}
-                >
-                    <Image source={require('./assets/topbar-set.png')} style={headerStyles.setttingImage}></Image>
+                    <TouchableOpacity style={headerStyles.setttingTouchableOpacity}
+                        onPress= {() => {this.navigation.navigate("SettingPage",{info:null})}}
+                        >
+                    <Iconfont name="icon-set" size={22} color="#FFFFFF"/>   
+                    {/* <Image source={require('./assets/topbar-set.png')} style={headerStyles.setttingImage}></Image> */}
                     </TouchableOpacity>
 
                     <Text style={headerStyles.settingTitle}>
@@ -49,7 +51,8 @@ import{
                 <TouchableOpacity style={headerStyles.messageTouchableOpacity}
                 onPress={()=> {}}
                 >
-                 <Image source={require('./assets/topbar-message.png')} style={headerStyles.setttingImage}></Image>
+                <Iconfont name="icon-message" size={22} color="#FFFFFF"/>  
+                 {/* <Image source={require('./assets/topbar-message.png')} style={headerStyles.setttingImage}></Image> */}
                 </TouchableOpacity>
               </View>
               
@@ -61,7 +64,8 @@ import{
                     <Text style={infoStyles.descr}>管理员 xiaobaoZhang</Text>
                   </View>
                   <View style={mineInfoStyles.arrow}>
-                    <Image style={mineInfoStyles.image} source={require('./assets/arrow.png')}></Image>
+                    <Iconfont name="icon-rightarrow" color="#FFFFFF" size={20}/>
+                    {/* <Image style={mineInfoStyles.image} source={require('./assets/arrow.png')}></Image> */}
                   </View>
               </TouchableOpacity>      
 
@@ -79,7 +83,8 @@ import{
                     <Text style={companyInfoStyles.companyName}>{this.state.companyNameStr}</Text>
                     <Text style={companyInfoStyles.companyAddress}>{this.state.companyAddress}</Text>
                 </View>
-                <Image style={[companyInfoStyles.arrow,{position:'absolute',right:-10}]}  source={require('../../../assets/arrow_right.png')} resizeMode='center'/>
+                <Iconfont name="icon-rightarrow" color="#666666" size={20} style={{position:'absolute',right:8}}/>
+                {/* <Image style={[companyInfoStyles.arrow,{position:'absolute',right:-10}]}  source={require('../../../assets/arrow_right.png')} resizeMode='center'/> */}
               </TouchableOpacity>
             );
         }else{
@@ -87,7 +92,8 @@ import{
                 <TouchableOpacity style={styles.item} onPress= {() => {this.navigation.navigate("ProblemsNici",{info:item})}}>
                     <Text style={styles.text}>{item}
                     </Text>
-                    <Image style={styles.ImageArrow} source={require('../../../assets/arrow_right.png')} resizeMode='center'/>
+                    <Iconfont name="icon-rightarrow" color="#666666" size={20} style={{position:'absolute',right:8,}}/>
+                    {/* <Image style={styles.ImageArrow} source={require('../../../assets/arrow_right.png')} resizeMode='center'/> */}
                 </TouchableOpacity>
             );
         }
@@ -96,7 +102,6 @@ import{
     render(){
         return(
             <View style={styles.viewStyle}>
-
                 {/* 头部控件 */}
                 <View style={styles.listHeaderComponent}>
                  {this._creatListHeaderComponent()}
@@ -151,6 +156,9 @@ import{
         height:49,
         width:49,
         backgroundColor: 'rgba(255,255,255,1.0)',
+        backgroundColor:'red',
+        alignItems:'center',
+        justifyContent:"center",
      },
      companyName:{
         width:width-100,
@@ -169,10 +177,11 @@ import{
  })
  const headerStyles = StyleSheet.create({
     setttingTouchableOpacity:{
-        width:22,
-        height:22,
-        marginLeft:10,
+        width:42,
+        height:32,
+        marginLeft:0,
         marginTop:0,
+        alignItems:'center'
     },
     
     setttingImage:{
@@ -183,7 +192,7 @@ import{
 
     settingTitle:{
         height:22,
-        width:width-64,
+        width:width-84,
         marginTop:0,
         fontWeight:'bold',
         color:'#FFFFFF',
@@ -191,10 +200,11 @@ import{
         textAlign:'center',  
     },
     messageTouchableOpacity:{
-        width:22,
-        height:22,
-        marginRight:10,
+        width:42,
+        height:32,
+        marginRight:0,
         marginTop:0,
+        alignItems:'center',
     },
  })
 
@@ -212,14 +222,10 @@ import{
     },
     arrow:{
         height:60,
-        marginRight:0,
+        marginLeft:12,
         width:60,
-    },
-    image:{
-        paddingRight:85,
-        height:60,
-        width:60,
-        resizeMode:'center',
+        alignItems:'center',
+        justifyContent:"center",
     },
  })
 
@@ -263,6 +269,22 @@ import{
  });
 
  const styles = StyleSheet.create({
+
+
+    container:{
+        backgroundColor:'white',
+        width:width-44,
+        height: 36,
+        marginTop: 2,
+        flexDirection:'row',
+        alignItems: 'center',
+        justifyContent: 'space-around'
+    },
+    iconStyle: {
+        color: 'red',
+        fontFamily:'iconfont',
+        fontSize: 30 
+    },
     viewStyle:{
         flex: 1,
         paddingTop: 0,
@@ -290,21 +312,13 @@ import{
         height:49,
         width:width,
         flexDirection: 'row',
+        backgroundColor:'#FFFFFF',
+        alignItems: 'center',
       },
       text: {
-        padding: 15,
+        marginLeft:15,
         fontSize: 15,
-        height: 49,
-        width:width - 49,
         color:'#333333',
-        backgroundColor: 'rgba(255,255,255,1.0)',
-      },
-      ImageArrow:{
-        height:49,
-        width:49,
-        marginRight:49,
-        backgroundColor: 'rgba(255,255,255,1.0)',
-        paddingRight:70,
       },
 });
 

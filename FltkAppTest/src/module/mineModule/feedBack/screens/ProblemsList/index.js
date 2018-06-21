@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {StackNavigator}  from 'react-navigation';
 import {TouchableOpacity} from 'react-native';
+import Iconfont  from '../../../../../../component/Iconfont';
 
 import{
     Text, 
@@ -50,11 +51,11 @@ export default class ProblemsList extends Component{
               <View style={styles.navigationBar}>
                       <View style={navigationBarStyles.viewStyle}>
                           <TouchableOpacity style={navigationBarStyles.leftTouchableOpacity} onPress={this._goBack.bind(this)}>
-                              <Image resizeMode='stretch' source={require('../../../../../assets/topbar-back.png')} style={navigationBarStyles.leftImage}></Image>
+                            <Iconfont name="icon-back" size={22} color="#666666"/>  
                           </TouchableOpacity>
                           <Text style={navigationBarStyles.title}>问题列表</Text>
                           <TouchableOpacity style={navigationBarStyles.rightTouchableOpacity}>
-                              <Image resizeMode='stretch' source={require('../../assets/topbar-search.png')} style={navigationBarStyles.rightImage}></Image>
+                            <Iconfont name="icon-search" size={22} color="#666666"/>
                           </TouchableOpacity>
                       </View>
                 </View>
@@ -75,7 +76,7 @@ export default class ProblemsList extends Component{
     
     
               <View style={styles.bottomView}>
-                <Text style={styles.bottomViewTitle}>需要更多帮助</Text>
+                <Text style={styles.bottomViewTitle}>需要更多帮助?</Text>
                 <TouchableOpacity style={styles.button} onPress = {contactCustomerService}>
                 <Text style={styles.buttonText}>联系客服</Text>
                 </TouchableOpacity>
@@ -155,14 +156,14 @@ class ItemDivideComponent extends Component {
       paddingRight: 15,
       borderRadius: 24,
       borderWidth: 0.5,
-      borderColor:'#4F9635',
+      borderColor:'#E2E2E2',
       backgroundColor: 'white',
       justifyContent: 'center',
       margin: 20,
     },
     buttonText: {
         textAlign: 'center',
-        color: 'rgba(79,150,53,1)',
+        color: '#333333',
         fontSize:18,
     },
     navigationBar:{
@@ -177,13 +178,14 @@ class ItemDivideComponent extends Component {
         width:width,
         height:31,
         flexDirection: 'row',
-        marginTop:30,
+        marginTop:35,
     },
     leftTouchableOpacity:{
-       height:31,
-       width:31,
-       flexDirection: 'row',
-       alignItems:'center',
+       width:42,
+       height:32,
+       marginLeft:0,
+       marginTop:0,
+       alignItems:'center'
     },
     leftImage:{
        height:23,
@@ -191,17 +193,19 @@ class ItemDivideComponent extends Component {
        marginLeft:10,
     },
     title:{
-       fontSize: 18,
+       height:22,
+       width:width-84,
+       marginTop:0,
+       fontWeight:'bold',
        color:'#333333',
-       width:width - 62,
-       height:31,
+       fontSize:18,
        textAlign:'center',
-       marginTop:5, 
     },
     rightTouchableOpacity:{
-       height:31,
-       width:31,
-       flexDirection: 'row',
+       width:42,
+       height:32,
+       marginRight:0,
+       marginTop:0,
        alignItems:'center',
     },
     rightImage:{

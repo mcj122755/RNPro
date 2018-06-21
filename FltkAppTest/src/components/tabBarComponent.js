@@ -72,7 +72,8 @@ export default class TabBarComponet extends Component{
     render(){
         return(
             <View style={styles.contaner}>
-                <TabNavigator tabBarStyle={styles.tab}>
+            <HomeNavigator/>
+                {/* <TabNavigator tabBarStyle={styles.tab}>
                     <TabNavigator.Item 
                         selected={this.state.selectedTab==='home'} 
                         title="首页" 
@@ -94,7 +95,7 @@ export default class TabBarComponet extends Component{
                     >
                         <ProblemsNiciNavigator/> 
                     </TabNavigator.Item>
-                </TabNavigator>
+                </TabNavigator> */}
             </View>
         );
     }

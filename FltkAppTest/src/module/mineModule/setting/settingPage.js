@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {StackNavigator}  from 'react-navigation';
 import {TouchableOpacity} from 'react-native';
+import Iconfont  from '../../../../component/Iconfont';
 
 import{
     Text, 
@@ -130,11 +131,13 @@ import{
                 <View style={styles.navigationBar}>
                     <View style={navigationBarStyles.viewStyle}>
                         <TouchableOpacity style={navigationBarStyles.leftTouchableOpacity} onPress={this._goBack.bind(this)}>
-                            <Image resizeMode='stretch' source={require('./assets/topbar-back.png')} style={navigationBarStyles.leftImage}></Image>
+                            {/* <Image resizeMode='stretch' source={require('./assets/topbar-back.png')} style={navigationBarStyles.leftImage}></Image> */}
+                            <Iconfont name="icon-back" size={22} color="#666666"/>   
                         </TouchableOpacity>
                         <Text style={navigationBarStyles.title}>设置</Text>
                         <TouchableOpacity style={navigationBarStyles.rightTouchableOpacity} onPress={this._clickMessage.bind(this)}>
-                            <Image resizeMode='stretch' source={require('./assets/topbar-message.png')} style={navigationBarStyles.rightImage}></Image>
+                            {/* <Image resizeMode='stretch' source={require('./assets/topbar-message.png')} style={navigationBarStyles.rightImage}></Image> */}
+                            <Iconfont name="icon-message" size={22} color="#666666"/>
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -183,13 +186,14 @@ import{
          width:width,
          height:31,
          flexDirection: 'row',
-         marginTop:30,
+         marginTop:35,
      },
      leftTouchableOpacity:{
-        height:31,
-        width:31,
-        flexDirection: 'row',
-        alignItems:'center',
+        width:42,
+        height:32,
+        marginLeft:0,
+        marginTop:0,
+        alignItems:'center'
      },
      leftImage:{
         height:23,
@@ -197,17 +201,19 @@ import{
         marginLeft:10,
      },
      title:{
-        fontSize: 18,
+        height:22,
+        width:width-84,
+        marginTop:0,
+        fontWeight:'bold',
         color:'#333333',
-        width:width - 62,
-        height:31,
+        fontSize:18,
         textAlign:'center',
-        marginTop:5, 
      },
      rightTouchableOpacity:{
-        height:31,
-        width:31,
-        flexDirection: 'row',
+        width:42,
+        height:32,
+        marginRight:0,
+        marginTop:0,
         alignItems:'center',
      },
      rightImage:{

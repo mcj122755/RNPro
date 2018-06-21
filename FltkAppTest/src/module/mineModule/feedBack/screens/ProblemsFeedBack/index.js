@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {StackNavigator}  from 'react-navigation';
 import view from './view';
 import {TouchableOpacity, TextInput} from 'react-native';
+import Iconfont  from '../../../../../../component/Iconfont';
 
 import{
     Text, 
@@ -185,10 +186,9 @@ export default class ProblemsNici extends Component{
           <View style={styles.navigationBar}>
                   <View style={navigationBarStyles.viewStyle}>
                       <TouchableOpacity style={navigationBarStyles.leftTouchableOpacity} onPress={this._goBack.bind(this)}>
-                          <Image resizeMode='stretch' source={require('../../../../../assets/topbar-back.png')} style={navigationBarStyles.leftImage}></Image>
+                        <Iconfont name="icon-back" size={22} color="#666666"/>  
                       </TouchableOpacity>
                       <Text style={navigationBarStyles.title}>帮助与反馈</Text>
-                      
                   </View>
             </View>
             
@@ -209,7 +209,7 @@ export default class ProblemsNici extends Component{
             
             <Text style={TextInputViewStyle.capion}> 
                 您最多可以输入
-                <Text style={{color:'#4F9635'}}>{this.state.feedBackCharNumber}</Text>
+                <Text style={{color:'#1E79DA'}}>{this.state.feedBackCharNumber}</Text>
                 字
             </Text>
             <PickImageClass style={styles.picButton}/>
@@ -243,7 +243,7 @@ function clickSubmitButton(){
 
 const SubmitButtonStyle = StyleSheet.create({
  button:{
-   backgroundColor:'#4F9635',
+   backgroundColor:'#1E79DA',
    height:49,
    margin:15,
    borderRadius:5,
@@ -286,13 +286,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 0,
-    backgroundColor: 'white',
+    backgroundColor: '#F7F7F7',
    },
   buttonView:{
     marginTop:16,
     flexDirection:'row',
     height:50,
-    backgroundColor:"white",
+    backgroundColor:"#F7F7F7",
   },
   buttonText:{
     textAlign: 'center',
@@ -321,7 +321,7 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     borderWidth: 0.5,
     borderColor:'white',
-    backgroundColor: '#4F9635',
+    backgroundColor: '#1E79DA',
     justifyContent: 'center',
     margin:10,
   },
@@ -350,13 +350,14 @@ const navigationBarStyles = StyleSheet.create({
       width:width,
       height:31,
       flexDirection: 'row',
-      marginTop:30,
+      marginTop:35,
   },
   leftTouchableOpacity:{
-     height:31,
-     width:31,
-     flexDirection: 'row',
-     alignItems:'center',
+     width:42,
+     height:32,
+     marginLeft:0,
+     marginTop:0,
+     alignItems:'center'
   },
   leftImage:{
      height:23,
@@ -364,17 +365,19 @@ const navigationBarStyles = StyleSheet.create({
      marginLeft:10,
   },
   title:{
-     fontSize: 18,
+     height:22,
+     width:width-84,
+     marginTop:0,
+     fontWeight:'bold',
      color:'#333333',
-     width:width - 62,
-     height:31,
+     fontSize:18,
      textAlign:'center',
-     marginTop:5, 
   },
   rightTouchableOpacity:{
-     height:31,
-     width:31,
-     flexDirection: 'row',
+     width:42,
+     height:32,
+     marginRight:0,
+     marginTop:0,
      alignItems:'center',
   },
   rightImage:{

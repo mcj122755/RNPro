@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {StackNavigator}  from 'react-navigation';
 import view from './view';
 import {TouchableOpacity} from 'react-native';
+import Iconfont  from '../../../../../../component/Iconfont';
 
 import{
     Text, 
@@ -37,15 +38,19 @@ export default class ProblemsNici extends Component{
               <View style={styles.navigationBar}>
                       <View style={navigationBarStyles.viewStyle}>
                           <TouchableOpacity style={navigationBarStyles.leftTouchableOpacity} onPress={this._goBack.bind(this)}>
-                              <Image resizeMode='stretch' source={require('../../../../../assets/topbar-back.png')} style={navigationBarStyles.leftImage}></Image>
+                            <Iconfont name="icon-back" size={22} color="#666666"/>  
+
                           </TouchableOpacity>
                           <Text style={navigationBarStyles.title}>如何使用标签功能</Text>
-                          <TouchableOpacity style={navigationBarStyles.rightTouchableOpacity}>
+                          {/* <TouchableOpacity style={navigationBarStyles.rightTouchableOpacity}>
                               <Image resizeMode='stretch' source={require('../../assets/topbar-search.png')} style={navigationBarStyles.rightImage}></Image>
-                          </TouchableOpacity>
+                          </TouchableOpacity> */}
+                          
                       </View>
+                     
                 </View>
-
+                 {/* */}
+                 <View style={{width:width, height:1, backgroundColor:'#E2E2E2 ', marginBottom:1}} />
                 <Text style={styles.titleStyle}>如何使用签到功能?</Text>
                 <Text style={styles.contentStyle}>      excel电子表中vlookup函数使用方法，将一个表格中一列数据引用到另外一个表中，
                 讲得非常详细堪称终极版教程了，就算对excel很不熟悉，
@@ -108,7 +113,7 @@ function contactCustomerService(){
     },
     leftButtonText: {
       textAlign: 'center',
-      color: 'rgba(79,150,53,1)',
+      color: '#1E79DA',
       fontSize:13,
     },
     rightButtonText: {
@@ -159,14 +164,14 @@ function contactCustomerService(){
       paddingRight: 15,
       borderRadius: 24,
       borderWidth: 0.5,
-      borderColor:'#4F9635',
+      borderColor:'#E2E2E2',
       backgroundColor: 'white',
       justifyContent: 'center',
       margin: 20,
     },
     buttonText: {
         textAlign: 'center',
-        color: 'rgba(79,150,53,1)',
+        color: '#333333',
         fontSize:18,
     },
     navigationBar:{
@@ -182,13 +187,14 @@ function contactCustomerService(){
         width:width,
         height:31,
         flexDirection: 'row',
-        marginTop:30,
+        marginTop:35,
     },
     leftTouchableOpacity:{
-       height:31,
-       width:31,
-       flexDirection: 'row',
-       alignItems:'center',
+       width:42,
+       height:32,
+       marginLeft:0,
+       marginTop:0,
+       alignItems:'center'
     },
     leftImage:{
        height:23,
@@ -196,17 +202,19 @@ function contactCustomerService(){
        marginLeft:10,
     },
     title:{
-       fontSize: 18,
+       height:22,
+       width:width-84,
+       marginTop:0,
+       fontWeight:'bold',
        color:'#333333',
-       width:width - 62,
-       height:31,
+       fontSize:18,
        textAlign:'center',
-       marginTop:5, 
     },
     rightTouchableOpacity:{
-       height:31,
-       width:31,
-       flexDirection: 'row',
+       width:42,
+       height:32,
+       marginRight:0,
+       marginTop:0,
        alignItems:'center',
     },
     rightImage:{

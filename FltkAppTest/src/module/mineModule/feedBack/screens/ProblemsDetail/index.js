@@ -50,7 +50,7 @@ export default class ProblemsNici extends Component{
                      
                 </View>
                  {/* */}
-                 <View style={{width:width, height:1, backgroundColor:'#E2E2E2 ', marginBottom:1}} />
+                 <View style={{width:width, height:0.5, backgroundColor:'#E2E2E2', marginBottom:1}} />
                 <Text style={styles.titleStyle}>如何使用签到功能?</Text>
                 <Text style={styles.contentStyle}>      excel电子表中vlookup函数使用方法，将一个表格中一列数据引用到另外一个表中，
                 讲得非常详细堪称终极版教程了，就算对excel很不熟悉，

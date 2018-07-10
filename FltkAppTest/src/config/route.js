@@ -2,43 +2,62 @@
 
 import React from 'react';
 import {StackNavigator} from 'react-navigation';
-import ProblemsNici from  '../screens/ProblemsNici';
-import ProblemsList from  '../screens/ProblemsList';
-import ProblemsDetail from  '../screens/ProblemsDetail';
-import ProblemsFeedBack from  '../screens/ProblemsFeedBack';
+import TabarComponent from './src/components/tabBarComponent';
 
-
-const AppNavigation = StackNavigator(
-
+const ANavigation = StackNavigator(
     {
-        ProblemsNici:{
-            screen:ProblemsNici
-        },
-        ProblemsList:{
-            screen:ProblemsList
-        },
-        ProblemsDetail:{
-            screen:ProblemsDetail
-        },
-        ProblemsFeedBack:{
-            screen:ProblemsFeedBack
+        TabarComponent:{
+            screen:TabarComponent
         }
     }
 );
 
-export default() => <AppNavigation />
+
+
+export default class AppNavigation extends Component{
+    constructor(props){
+        super(props);
+    }
+    render(){
+        return(
+            <ANavigation />
+        );
+    }
+}
+
+
+
 
 
 // import React from 'react';
 // import {StackNavigator} from 'react-navigation';
-// import TabarComponent from './src/components/tabBarComponent';
+// import ProblemsNici from  '../screens/ProblemsNici';
+// import ProblemsList from  '../screens/ProblemsList';
+// import ProblemsDetail from  '../screens/ProblemsDetail';
+// import ProblemsFeedBack from  '../screens/ProblemsFeedBack';
+
+
 // const AppNavigation = StackNavigator(
 
 //     {
-//         TabarComponent:{
-//             screen:TabarComponent
+//         ProblemsNici:{
+//             screen:ProblemsNici
+//         },
+//         ProblemsList:{
+//             screen:ProblemsList
+//         },
+//         ProblemsDetail:{
+//             screen:ProblemsDetail
+//         },
+//         ProblemsFeedBack:{
+//             screen:ProblemsFeedBack
 //         }
 //     }
 // );
 
 // export default() => <AppNavigation />
+
+
+
+
+

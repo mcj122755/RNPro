@@ -26,7 +26,7 @@ var options = {
   chooseFromLibraryButtonTitle:'相册图片',
   storageOptions: {
     skipBackup: true,
-    path: 'images'
+    path: 'images',
   }
 };
 
@@ -44,8 +44,16 @@ class PickImageClass extends Component {
   render() {
      return (
        <View style={pickImageStyles.container}>
-        <Text style={pickImageStyles.item} onPress={this.choosePic.bind(this)}>选择照片</Text>
-        <Image source={this.state.avatarSource} style={pickImageStyles.image} />
+          <TouchableOpacity   style={{width:184, height:50, backgroundColor:'#FFFFFF',
+          marginLeft:10, flexDirection:'row',alignItems:'center',borderColor:'#E2E2E2',borderRadius:6,
+          borderWidth:0.5, 
+           }} onPress={this.choosePic.bind(this)}>
+              <Iconfont name="icon-photo" size={30} color="#1E79DA" style={{marginLeft:15}}/>
+              <Text style={{color:'#999999',fontSize:10, width:110,marginLeft:15}}>请拍摄 / 截屏问题照片 帮助我们更快解决问题</Text>  
+          </TouchableOpacity>
+          <Image source={this.state.avatarSource} style={pickImageStyles.image} />
+          <Image source={this.state.avatarSource} style={pickImageStyles.image} />
+          <Image source={this.state.avatarSource} style={pickImageStyles.image} />
        </View>
      );
   }
@@ -80,7 +88,7 @@ class PickImageClass extends Component {
 const pickImageStyles = StyleSheet.create({
  container:{
    flex: 1,
-   marginTop:25
+   marginTop:10,
  },
  item:{
    margin:15,
@@ -91,10 +99,11 @@ const pickImageStyles = StyleSheet.create({
    textAlign:'center'
  },
  image:{
-  height:150,
-  width:200,
+  height:50,
+  width:60,
   alignSelf:'center',
-},
+  backgroundColor:'blue',
+ },
 });
 
 
@@ -175,9 +184,6 @@ export default class ProblemsNici extends Component{
 
 
     // 拍摄和截屏照片
-    
-
-    
     render(){
         return (
         <View style={styles.container}> 
@@ -188,7 +194,7 @@ export default class ProblemsNici extends Component{
                       <TouchableOpacity style={navigationBarStyles.leftTouchableOpacity} onPress={this._goBack.bind(this)}>
                         <Iconfont name="icon-back" size={22} color="#666666"/>  
                       </TouchableOpacity>
-                      <Text style={navigationBarStyles.title}>帮助与反馈</Text>
+                      <Text style={navigationBarStyles.title}>意见反馈</Text>
                   </View>
             </View>
             
@@ -212,7 +218,7 @@ export default class ProblemsNici extends Component{
                 <Text style={{color:'#1E79DA'}}>{this.state.feedBackCharNumber}</Text>
                 字
             </Text>
-            <PickImageClass style={styles.picButton}/>
+            <PickImageClass/>
             {/* <TouchableOpacity style={styles.picButton} onPress = {contactCustomerService}>
                 <Text style={styles.picText}>请拍摄/截屏问题照片帮助我们更快解决问题</Text>
             </TouchableOpacity> */}
@@ -266,11 +272,11 @@ const TextInputViewStyle = StyleSheet.create({
     borderRadius: 5,
     borderWidth: 0.5,
     borderColor:'#E2E2E2',
+    backgroundColor:'#FFFFFF',
  },
  TextInput:{
    flex:1,
    fontSize:14,
-
  },
  capion:{
    fontSize:11,
@@ -326,13 +332,15 @@ const styles = StyleSheet.create({
     margin:10,
   },
   picButton:{
-    margin:10,
-    height:50,
-    width:173,
-    padding:10,
-    borderRadius: 5,
-    borderWidth: 0.5,
-    borderColor:'#E2E2E2',
+    // width:width,
+    // height:60,
+    // margin:10,
+    // height:50,
+    // width:173,
+    // padding:10,
+    // borderRadius: 5,
+    // borderWidth: 0.5,
+    // borderColor:'#E2E2E2',
   },
   picText:{
     textAlign: 'left',

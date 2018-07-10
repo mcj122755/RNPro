@@ -62,6 +62,9 @@ const ProblemsNiciNavigator = StackNavigator(
 );
 
 
+
+
+
 export default class TabBarComponet extends Component{
     constructor(props){
         super(props);
@@ -72,8 +75,8 @@ export default class TabBarComponet extends Component{
     render(){
         return(
             <View style={styles.contaner}>
-            <HomeNavigator/>
-                {/* <TabNavigator tabBarStyle={styles.tab}>
+            {/* <HomeNavigator/> */}
+                <TabNavigator tabBarStyle={styles.tab}>
                     <TabNavigator.Item 
                         selected={this.state.selectedTab==='home'} 
                         title="首页" 
@@ -81,7 +84,10 @@ export default class TabBarComponet extends Component{
                         renderSelectedIcon={()=> <Image source={tab_nor_1} style={styles.tabIcon}/>}
                         onPress={()=> this.setState({selectedTab:'home'})}
                     >
+         
                     <HomeNavigator/>
+                    {/* <HomePage /> */}
+                    
                     
                     </TabNavigator.Item>
 
@@ -94,8 +100,9 @@ export default class TabBarComponet extends Component{
                      onPress={()=> this.setState({selectedTab:'mine'})}
                     >
                         <ProblemsNiciNavigator/> 
+                        {/* <HomePage/> */}
                     </TabNavigator.Item>
-                </TabNavigator> */}
+                </TabNavigator>
             </View>
         );
     }
